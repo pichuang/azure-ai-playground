@@ -1,0 +1,11 @@
+azure-cognitiveservices-speech==1.44.0
+azure-core==1.34.0
+certifi==2025.4.26
+charset-normalizer==3.4.2
+dotenv==0.9.9
+idna==3.10
+python-dotenv==1.1.0
+requests==2.32.3
+six==1.17.0
+typing_extensions==4.13.2
+urllib3==2.4.0
