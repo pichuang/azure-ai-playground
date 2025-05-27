@@ -26,6 +26,11 @@ def recognize_from_file():
         endpoint=ENDPOINT)
     speech_config.speech_recognition_language="en-US"
 
+    # Enable Proxy if specified
+    # Note!! Proxy functionality is not available on macOS. This function will have no effect on the platform
+    speech_config.set_proxy(hostname=PROXY_HOST, port=PROXY_PORT, username=None, password=None)
+    speech_config.enable_audio_logging()
+
     # PropertyId Enum
     # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.propertyid?view=azure-python
 
