@@ -28,14 +28,19 @@ def recognize_from_file():
 
     # Enable Proxy if specified
     # Note!! Proxy functionality is not available on macOS. This function will have no effect on the platform
-    # speech_config.set_proxy(hostname=PROXY_HOST, port=PROXY_PORT, username=None, password=None)
+    print(f"Using Proxy: {PROXY_HOST}:{PROXY_PORT} (TLS Validation Enabled: {TLS_VALIDATION_ENABLED})")
+    speech_config.set_proxy(hostname=PROXY_HOST, port=PROXY_PORT, username=None, password=None)
+
+    # https://learn.microsoft.com/en-us/azure/ai-services/speech-service/logging-audio-transcription?pivots=programming-language-python#get-audio-and-transcription-logs
     speech_config.enable_audio_logging()
 
     # PropertyId Enum
-    # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.propertyid?view=azure-python
+    # https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-configure-openssl-linux?pivots=programming-language-python
+    speech_config.set_property_by_name("OPENSSL_CONTINUE_ON_CRL_DOWNLOAD_FAILURE", "false")
+    speech_config.set_property_by_name("OPENSSL_DISABLE_CRL_CHECK", "false")
 
-    speech_config.set_property_by_name("OPENSSL_CONTINUE_ON_CRL_DOWNLOAD_FAILURE", "true")
-    speech_config.set_property_by_name("OPENSSL_DISABLE_CRL_CHECK", "true")
+    # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.propertyid?view=azure-python
+    speech_config.set_property(speechsdk.PropertyId.Speech_LogFilename, "speech_debug.log")
 
     audio_config = speechsdk.AudioConfig(filename=TEST_WAV_FILE)
 
