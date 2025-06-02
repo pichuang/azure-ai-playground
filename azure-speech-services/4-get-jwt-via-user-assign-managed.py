@@ -22,14 +22,17 @@ dotenv.load_dotenv()
 CUSTOM_ENDPOINT = os.getenv("CUSTOM_ENDPOINT")
 USER_ASSIGNED_CLIENT_ID = os.getenv("USER_ASSIGNED_CLIENT_ID")
 
+#
 # Set the logging level for the Azure Identity library
+#
 logger = logging.getLogger("azure.identity")
 logger.setLevel(logging.DEBUG)
-# Direct logging output to stdout. Without adding a handler,
-# no logging output is visible.
 handler = logging.StreamHandler(stream=sys.stdout)
 logger.addHandler(handler)
 
+#
+# Use User Assigned Managed Identity to get JWT token
+#
 # Please make sure you assign the User Assigned Managed Identity to the Azure Cognitive Services resource.
 credential = ManagedIdentityCredential(client_id=USER_ASSIGNED_CLIENT_ID)
 credential.get_token("https://cognitiveservices.azure.com/.default")
@@ -37,7 +40,7 @@ credential.get_token("https://cognitiveservices.azure.com/.default")
 token = credential.get_token("https://cognitiveservices.azure.com/.default")
 jwt_token = token.token
 
-speechConfig = SpeechConfig(token_credential=credential, endpoint=CUSTOM_ENDPOINT)
+# speechConfig = SpeechConfig(token_credential=credential, endpoint=CUSTOM_ENDPOINT)
 
 print(f"取得的 JWT token: {jwt_token}")
 
