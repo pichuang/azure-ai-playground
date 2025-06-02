@@ -8,6 +8,7 @@ import azure.cognitiveservices.speech as speechsdk
 
 dotenv.load_dotenv()
 SPEECH_REGION = os.getenv("SPEECH_REGION")
+CUSTOM_ENDPOINT = os.getenv("CUSTOM_ENDPOINT")
 
 def recognize_from_file_with_jwt(jwt_token, audio_file: str):
     """
@@ -16,7 +17,12 @@ def recognize_from_file_with_jwt(jwt_token, audio_file: str):
     if not SPEECH_REGION:
         raise ValueError("SPEECH_REGION is not set. Please set it in your environment variables.")
     # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig?view=azure-python#parameters
-    speech_config = speechsdk.SpeechConfig(region=SPEECH_REGION, auth_token=jwt_token)
+    if CUSTOM_ENDPOINT:
+        print(f"Using custom endpoint: {CUSTOM_ENDPOINT}")
+        speech_config = speechsdk.SpeechConfig(endpoint=CUSTOM_ENDPOINT, auth_token=jwt_token)
+    else:
+        print(f"Using region: {SPEECH_REGION}")
+        speech_config = speechsdk.SpeechConfig(region=SPEECH_REGION, auth_token=jwt_token)
 
     speech_config.speech_recognition_language = "en-US"
     audio_config = speechsdk.AudioConfig(filename=audio_file)
