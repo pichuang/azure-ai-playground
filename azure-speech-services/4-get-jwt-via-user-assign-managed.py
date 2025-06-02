@@ -9,6 +9,8 @@ You CANNNOT run this script on your local machine, because local machine does no
 
 import os
 import dotenv
+import logging
+import sys
 from azure.identity import ManagedIdentityCredential
 from azure.cognitiveservices.speech import SpeechConfig
 from use_jwt_to_access import recognize_from_file_with_jwt
@@ -20,6 +22,14 @@ dotenv.load_dotenv()
 CUSTOM_ENDPOINT = os.getenv("CUSTOM_ENDPOINT")
 USER_ASSIGNED_CLIENT_ID = os.getenv("USER_ASSIGNED_CLIENT_ID")
 
+# Set the logging level for the Azure Identity library
+logger = logging.getLogger("azure.identity")
+logger.setLevel(logging.DEBUG)
+# Direct logging output to stdout. Without adding a handler,
+# no logging output is visible.
+handler = logging.StreamHandler(stream=sys.stdout)
+logger.addHandler(handler)
+
 # Please make sure you assign the User Assigned Managed Identity to the Azure Cognitive Services resource.
 credential = ManagedIdentityCredential(client_id=USER_ASSIGNED_CLIENT_ID)
 credential.get_token("https://cognitiveservices.azure.com/.default")
@@ -28,6 +38,10 @@ token = credential.get_token("https://cognitiveservices.azure.com/.default")
 jwt_token = token.token
 
 speechConfig = SpeechConfig(token_credential=credential, endpoint=CUSTOM_ENDPOINT)
+
+print(
+    f"DEBUG={logger.isEnabledFor(logging.DEBUG)}"
+)
 
 print(f"取得的 JWT token: {jwt_token}")
 
