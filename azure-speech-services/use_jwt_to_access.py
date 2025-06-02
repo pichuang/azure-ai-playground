@@ -37,7 +37,8 @@ def recognize_from_file_with_jwt(jwt_token, audio_file: str):
         done = True
 
     def canceled_cb(evt):
-        print(f"CANCELED: {evt}")
+        details = evt.result.cancellation_details
+        print(f"CANCELED reason={details.reason}, error={details.error_details}")
         nonlocal done
         done = True
 
