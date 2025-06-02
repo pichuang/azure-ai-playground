@@ -29,7 +29,7 @@ def recognize_from_file():
     # Enable Proxy if specified
     # Note!! Proxy functionality is not available on macOS. This function will have no effect on the platform
     print(f"Using Proxy: {PROXY_HOST}:{PROXY_PORT} (TLS Validation Enabled: {TLS_VALIDATION_ENABLED})")
-    speech_config.set_proxy(hostname=PROXY_HOST, port=PROXY_PORT, username=None, password=None)
+    #speech_config.set_proxy(hostname=PROXY_HOST, port=PROXY_PORT, username=None, password=None)
 
     # https://learn.microsoft.com/en-us/azure/ai-services/speech-service/logging-audio-transcription?pivots=programming-language-python#get-audio-and-transcription-logs
     speech_config.enable_audio_logging()
