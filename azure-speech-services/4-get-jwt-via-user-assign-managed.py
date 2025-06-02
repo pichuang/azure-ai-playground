@@ -39,9 +39,6 @@ jwt_token = token.token
 
 speechConfig = SpeechConfig(token_credential=credential, endpoint=CUSTOM_ENDPOINT)
 
-print(
-    f"DEBUG={logger.isEnabledFor(logging.DEBUG)}"
-)
 
 print(f"取得的 JWT token: {jwt_token}")
 
