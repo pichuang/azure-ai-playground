@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+The python script ONLY works on Azure VM with User Assigned Managed Identity.
+
+You CANNNOT run this script on your local machine, because local machine does not have User Assigned Managed Identity.
+"""
+
+
 import os
 import dotenv
 from azure.identity import ManagedIdentityCredential
