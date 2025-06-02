@@ -13,6 +13,7 @@ dotenv.load_dotenv()
 CUSTOM_ENDPOINT = os.getenv("CUSTOM_ENDPOINT")
 USER_ASSIGNED_CLIENT_ID = os.getenv("USER_ASSIGNED_CLIENT_ID")
 
+# Please make sure you assign the User Assigned Managed Identity to the Azure Cognitive Services resource.
 credential = ManagedIdentityCredential(client_id=USER_ASSIGNED_CLIENT_ID)
 credential.get_token("https://cognitiveservices.azure.com/.default")
 

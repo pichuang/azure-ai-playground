@@ -17,13 +17,19 @@ def recognize_from_file_with_jwt(jwt_token, audio_file: str):
 
     # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig?view=azure-python#parameters
     if CUSTOM_ENDPOINT:
+        # pylint: disable=pointless-string-statement
+        """
+        If CUSTOM_ENDPOINT is set, use it to create the SpeechConfig.
+        Due to some technical limitations, you need to assign the JWT token to the SpeechServiceAuthorization_Token property after creating the SpeechConfig with the custom endpoint.
+        """
         print(f"Using custom endpoint: {CUSTOM_ENDPOINT}")
         speech_config = speechsdk.SpeechConfig(endpoint=CUSTOM_ENDPOINT)
         # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.propertyid?view=azure-python
         speech_config.set_property(speechsdk.PropertyId.SpeechServiceAuthorization_Token, jwt_token)
     else:
         if not SPEECH_REGION:
-            raise ValueError("SPEECH_REGION is not set. Please set it in your environment variables.")
+            raise ValueError("SPEECH_REGION is not set. " \
+                            "Please set it in your environment variables.")
 
         print(f"Using region: {SPEECH_REGION}")
         speech_config = speechsdk.SpeechConfig(region=SPEECH_REGION, auth_token=jwt_token)
