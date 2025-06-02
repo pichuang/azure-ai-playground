@@ -6,15 +6,12 @@ The python script ONLY works on Azure VM with User Assigned Managed Identity.
 You CANNNOT run this script on your local machine, because local machine does not have User Assigned Managed Identity.
 """
 
-
 import os
-import dotenv
 import logging
 import sys
+import dotenv
 from azure.identity import ManagedIdentityCredential
-from azure.cognitiveservices.speech import SpeechConfig
 from use_jwt_to_access import recognize_from_file_with_jwt
-
 
 dotenv.load_dotenv()
 
