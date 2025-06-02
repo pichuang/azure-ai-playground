@@ -14,13 +14,17 @@ def recognize_from_file_with_jwt(jwt_token, audio_file: str):
     """
     Uses a JWT token to authenticate with Azure Cognitive Services Speech SDK
     """
-    if not SPEECH_REGION:
-        raise ValueError("SPEECH_REGION is not set. Please set it in your environment variables.")
+
     # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig?view=azure-python#parameters
     if CUSTOM_ENDPOINT:
         print(f"Using custom endpoint: {CUSTOM_ENDPOINT}")
-        speech_config = speechsdk.SpeechConfig(endpoint=CUSTOM_ENDPOINT, auth_token=jwt_token)
+        speech_config = speechsdk.SpeechConfig(endpoint=CUSTOM_ENDPOINT)
+        # https://learn.microsoft.com/en-us/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.propertyid?view=azure-python
+        speech_config.set_property(speechsdk.PropertyId.SpeechServiceAuthorization_Token, jwt_token)
     else:
+        if not SPEECH_REGION:
+            raise ValueError("SPEECH_REGION is not set. Please set it in your environment variables.")
+
         print(f"Using region: {SPEECH_REGION}")
         speech_config = speechsdk.SpeechConfig(region=SPEECH_REGION, auth_token=jwt_token)
 
