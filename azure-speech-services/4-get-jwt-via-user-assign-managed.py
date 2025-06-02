@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import dotenv
-from azure.identity import ManagedIdentityCredential
+from azure.identity import ManagedIdentityCredential, DefaultAzureCredential
 from azure.cognitiveservices.speech import SpeechConfig
 from use_jwt_to_access import recognize_from_file_with_jwt
 
@@ -13,7 +13,14 @@ dotenv.load_dotenv()
 CUSTOM_ENDPOINT = os.getenv("CUSTOM_ENDPOINT")
 USER_ASSIGNED_CLIENT_ID = os.getenv("USER_ASSIGNED_CLIENT_ID")
 
-credential = ManagedIdentityCredential(client_id=USER_ASSIGNED_CLIENT_ID)
+try:
+    credential = ManagedIdentityCredential(client_id=USER_ASSIGNED_CLIENT_ID)
+    credential.get_token("https://cognitiveservices.azure.com/.default")
+except Exception as ex: # pylint: disable=bare-except
+    print("Managed Identity can not be used, switching to DefaultAzureCredential; details:", ex)
+    credential = DefaultAzureCredential(exclude_managed_identity_credential=True)
+
+
 token = credential.get_token("https://cognitiveservices.azure.com/.default")
 jwt_token = token.token
 
