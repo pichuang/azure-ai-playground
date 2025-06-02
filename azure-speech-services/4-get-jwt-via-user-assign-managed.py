@@ -40,8 +40,6 @@ credential.get_token("https://cognitiveservices.azure.com/.default")
 token = credential.get_token("https://cognitiveservices.azure.com/.default")
 jwt_token = token.token
 
-# speechConfig = SpeechConfig(token_credential=credential, endpoint=CUSTOM_ENDPOINT)
-
 print(f"取得的 JWT token: {jwt_token}")
 
 recognize_from_file_with_jwt(jwt_token, "test.wav")
