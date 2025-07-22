@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source .env
+
+ENDPOINT_DOCUMENT_TRANSLATOR="${ENDPOINT_DOCUMENT_TRANSLATOR}"
+AZURE_SUBSCRIPTION_KEY="${AZURE_SUBSCRIPTION_KEY}"
+FROM_LANG="${FROM_LANG}"
+TO_LANG="${TO_LANG}"
+TEXT="${TEXT}"
+
+curl -X POST "${ENDPOINT_DOCUMENT_TRANSLATOR}&from=${FROM_LANG}&to=${TO_LANG}" -H "Ocp-Apim-Subscription-Key: ${AZURE_SUBSCRIPTION_KEY}" -H "Content-Type: application/json" -d "[{'Text':'${TEXT}'}]"; echo
