@@ -1,6 +1,6 @@
 # Public Access
 
-![](/imgs/screenshot-1.png)
+![](./imgs/screenshot-1.png)
 
-![](/imgs/networking.png)
+![](./imgs/networking.png)
 
