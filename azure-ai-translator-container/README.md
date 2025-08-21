@@ -1,4 +1,8 @@
-# Azure AI Disconnected Container 使用守則
+# Azure AI Disconnected Container 使用說明
+
+> 20250822
+
+這份文件是針對 Disconnected Container 的使用進行補充撰寫, 前 3 個步驟 0/1/2 需要保持在聯網狀態, 主要是要下載 container image 和 models, 之後的部分不需要聯網, 可完全離線運作
 
 ## 執行流程
 
