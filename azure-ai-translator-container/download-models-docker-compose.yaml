@@ -9,6 +9,7 @@ services:
     container_name: azure-ai-translator
     image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
     restart: no
+    env_file: ".env"
     environment:
       # Azure AI Translator settings
       EULA: accept
