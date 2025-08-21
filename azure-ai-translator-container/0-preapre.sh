@@ -16,5 +16,8 @@ docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.ID}}"
 # Save Container image
 docker save -o azure-translator-text-translation.tar mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
 
+# Move Container Image to archive
+mv azure-translator-text-translation.tar ./archive/
+
 # Check tarball
-ls -lh azure-translator-text-translation.tar
+ls -lh ./archive/azure-translator-text-translation.tar
