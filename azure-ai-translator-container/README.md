@@ -31,6 +31,8 @@
 3. 最後會顯示 `MODELS` 和 `TRANSLATORSYSTEMCONFIG` 相關的字串, 請先記錄起來, 倘若忘記紀錄則可以去 `./archive/log-download-models-*` 裡面的 log 找尋相對應的字串
 4. 打開 `run-disconnected-container-docker-compose.yaml` 檔案, 將 `TRANSLATORSYSTEMCONFIG` 和 `MODELS` 替換成下載時呈現的文字列
 
+![1-modify.png](./imgs/1-modify.png)
+
 ### 2. 打包 (2-tar.sh)
 
 > 需連線至 Internet
