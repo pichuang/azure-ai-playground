@@ -21,17 +21,17 @@ logfile="log-download-models_$(date +%Y%m%d_%H%M%S).log"
 
 docker compose \
     -f download-models-docker-compose.yaml up \
-    > "$logfile" 2>&1
+    > ./archive/"$logfile" 2>&1
 
 echo "====================="
 echo "MODELS"
 echo "====================="
-grep "docker run.*-e MODELS=" "$logfile" | head -n1 \
+grep "docker run.*-e MODELS=" ./archive/"$logfile" | head -n1 \
   | sed -E 's/.*-e MODELS=([^[:space:]]*).*/\1/'
 
 
 echo "====================="
 echo "TRANSLATORSYSTEMCONFIG"
 echo "====================="
-grep "docker run.*-e TRANSLATORSYSTEMCONFIG=" "$logfile" | head -n1 \
+grep "docker run.*-e TRANSLATORSYSTEMCONFIG=" ./archive/"$logfile" | head -n1 \
   | sed -E 's/.*-e TRANSLATORSYSTEMCONFIG=([^[:space:]]*).*/\1/'
