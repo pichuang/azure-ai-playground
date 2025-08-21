@@ -8,7 +8,7 @@ services:
   azure-ai-translator:
     container_name: azure-ai-translator
     image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
-    restart: always
+    restart: no
     environment:
       # Azure AI Translator settings
       EULA: accept
