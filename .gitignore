@@ -6,3 +6,4 @@ azure-speech-services/speech_debug.log
 azure-ai-translator-container/sample_translated.pdf
 azure-ai-translator-container/azure-ai-translator/*
 azure-ai-translator-container/log-download-models_*
+azure-ai-translator-container/archive/*
