@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tar -xzvpf package-azure-ai-translator-container-*.tar.gz
+sudo tar -xzvpf package-azure-ai-translator-container-*.tar.gz
 cd ./azure-ai-translator-container/
 
 # Fix permissions
