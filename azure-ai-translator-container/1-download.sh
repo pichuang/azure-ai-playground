@@ -9,4 +9,12 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
+source .env
+
+# Check TRANSLATOR_KEY is not empty
+if [ -z "$TRANSLATOR_KEY" ]; then
+  echo "TRANSLATOR_KEY is missing"
+  exit 1
+fi
+
 docker compose -f download-models-docker-compose.yaml up
