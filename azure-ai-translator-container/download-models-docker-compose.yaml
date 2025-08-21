@@ -1,0 +1,41 @@
+---
+networks:
+  adi-network:
+    driver: bridge
+
+services:
+  # Azure AI Translator
+  azure-ai-translator:
+    container_name: azure-ai-translator
+    image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
+    restart: always
+    environment:
+      # Azure AI Translator settings
+      EULA: accept
+      apikey: ${TRANSLATOR_KEY}
+      billing: ${TRANSLATOR_ENDPOINT_URI}
+      Languages: zh-Hant,zh-Hans,en
+      MODEL_PATH: /usr/local/models
+      HOTFIXDATAFOLDER: ""
+      GENERATEHOTFIXTEMPLATE: "false"
+      DOWNLOADLICENSE: "true"
+      Mounts:License: "/license"
+      CATEGORIES: ""
+      MODSENVIRONMENT: ""
+      MODELS: ""
+      TRANSLATORSYSTEMCONFIG: ""
+      # .Net Core settings
+      Mounts:Output: /logs
+      # Other settings
+      MODELS_UPDATED: "true"
+    volumes:
+      - ./azure-ai-translator/models:/usr/local/models
+      - ./azure-ai-translator/logs:/logs
+      - ./azure-ai-translator/output:/output
+      - ./azure-ai-translator/license:/license
+    expose:
+      - "5000"
+    ports:
+      - "5000:5000"
+    networks:
+      - adi-network

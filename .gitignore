@@ -3,3 +3,5 @@ azure-speech-services/speech_debug.log
 **/.env
 **/*.wav
 **/token.txt
+azure-ai-translator-container/sample_translated.pdf
+azure-ai-translator-container/azure-ai-translator/*
