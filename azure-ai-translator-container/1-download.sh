@@ -24,14 +24,14 @@ docker compose \
     > "$logfile" 2>&1
 
 echo "====================="
-echo "MODELS (Please copy the following string)"
+echo "MODELS"
 echo "====================="
 grep "docker run.*-e MODELS=" "$logfile" | head -n1 \
   | sed -E 's/.*-e MODELS=([^[:space:]]*).*/\1/'
 
 
 echo "====================="
-echo "TRANSLATORSYSTEMCONFIG (Please copy the following string)"
+echo "TRANSLATORSYSTEMCONFIG"
 echo "====================="
 grep "docker run.*-e TRANSLATORSYSTEMCONFIG=" "$logfile" | head -n1 \
   | sed -E 's/.*-e TRANSLATORSYSTEMCONFIG=([^[:space:]]*).*/\1/'
