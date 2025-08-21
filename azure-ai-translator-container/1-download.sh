@@ -17,7 +17,7 @@ if [ -z "$TRANSLATOR_KEY" ]; then
   exit 1
 fi
 
-logfile="download-models_$(date +%Y%m%d_%H%M%S).log"
+logfile="log-download-models_$(date +%Y%m%d_%H%M%S).log"
 
 docker compose \
     -f download-models-docker-compose.yaml up \
