@@ -1,0 +1,31 @@
+---
+services:
+  layout:
+    container_name: azure-cognitive-service-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0:latest
+    environment:
+      eula: accept
+      apikey:
+      billing: https://.cognitiveservices.azure.com/
+      Logging__Console__LogLevel__Default: Information
+      # Default HealthCheck__MemoryUpperBoundInMB: 16000
+      HealthCheck__MemoryUpperBoundInMB: 14000
+      # Default Task__MaxRunningTimeSpanInMinutes: 60
+      Task__MaxRunningTimeSpanInMinutes: 60
+      # Default StorageTimeToLiveInMinutes: 2880
+      # Minimum/Maximum StorageTimeToLiveInMinutes: 5 / 10080
+      StorageTimeToLiveInMinutes: 1440
+      SharedRootFolder: /share
+      Mounts__Shared: /share
+      Mounts__Output: /logs
+    volumes:
+      - type: bind
+        source: ./root/share
+        target: /share
+      - type: bind
+        source: ./root/logs
+        target: /logs
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
