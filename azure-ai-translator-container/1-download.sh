@@ -22,3 +22,9 @@ logfile="download-models_$(date +%Y%m%d_%H%M%S).log"
 docker compose \
     -f download-models-docker-compose.yaml up \
     > "$logfile" 2>&1
+
+echo "====================="
+echo "MODELS (Please copy the following string)"
+echo "====================="
+grep "docker run.*-e MODELS=" "$logfile" | head -n1 \
+  | sed -E 's/.*-e MODELS=([^[:space:]]*).*/\1/'
