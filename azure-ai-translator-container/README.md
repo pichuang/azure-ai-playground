@@ -118,5 +118,17 @@ azure-ai-translator  | Application started. Press Ctrl+C to shut down.
 1. `run-disconnected-container-docker-compose.yaml` 內的 `TRANSLATORSYSTEMCONFIG` 和 `MODELS` 參數寫錯, 需要檢查
 2. 檢查 logs 看有沒有反應, 如果沒反應的話, 應該是這一包離線檔案有東西漏了, 建議重拉
 
+### Q5: license.dat 重不重要?
+
+不重要, 每次重新打包都會長的不一樣, 不需要特別保護
+
+### Q6: 整個資安哪裡最需要加強?
+
+![7-container-logs.png](./imgs/7-secure.png)
+
+除了打包出去的檔案因為離線的關係需要保護, 再來就是 ENDPOINT 和 KEY, 對應的資安措施分別為:
+
+1. 關閉公開存取, 避免被無聊人士存取
+2. 更換金鑰, 可以確保當下金鑰為最新狀態
 
 [1]: https://learn.microsoft.com/zh-tw/azure/ai-services/containers/disconnected-container-faq
