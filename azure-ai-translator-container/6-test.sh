@@ -25,5 +25,8 @@ curl -i -X POST \
   -o "sample_translated.md"
 
 echo
+ls -lt sample_translated.*
+
+echo
 echo "=> Disconnected Usage check"
 curl http://localhost:5000/records/usage-logs
