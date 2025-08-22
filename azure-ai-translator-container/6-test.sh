@@ -18,6 +18,12 @@ curl -i -X POST \
   -F "document=@sample.pdf;type=application/pdf" \
   -o "sample_translated.pdf"
 
+echo "=> Translate Markdown"
+curl -i -X POST \
+  "http://localhost:5000/translator/document:translate?api-version=2024-05-01&sourceLanguage=en&targetLanguage=zh-Hant" \
+  -F "document=@sample.md;type=text/markdown" \
+  -o "sample_translated.md"
+
 echo
-echo "=> Usage check"
-curl http://localhost:5000/usage
+echo "=> Disconnected Usage check"
+curl http://localhost:5000/records/usage-logs
