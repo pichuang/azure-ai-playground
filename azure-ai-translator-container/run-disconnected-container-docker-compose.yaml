@@ -9,13 +9,13 @@ services:
     container_name: azure-ai-translator
     image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
     restart: always
-    env_file: ".env"
+    #env_file: ".env"
     environment:
       # Azure AI Translator settings
-      EULA: accept
+      EULA: "accept"
       # apikey: ${TRANSLATOR_KEY}
       # billing: ${TRANSLATOR_ENDPOINT_URI}
-      Languages: zh-Hant,zh-Hans,en
+      Languages: "zh-Hant,zh-Hans,en"
       MODEL_PATH: "/usr/local/models"
       HOTFIXDATAFOLDER: ""
       GENERATEHOTFIXTEMPLATE: "false"
@@ -26,7 +26,7 @@ services:
       MODELS: "/usr/local/models/cht_chs_generalnn_2024040101,/usr/local/models/chs_cht_generalnn_2024040101,/usr/local/models/enu_chs_generalnn_2023110100,/usr/local/models/enu_chs_generalnn_contextual_translit_2024012300,/usr/local/models/chs_enu_generalnn_2023110100,/usr/local/models/enu_cht_generalnn_contextual_translit_2024012300,/usr/local/models/zh-hant_enu_generalnn_translit_2024012300,/usr/local/models/zh-hans_enu_generalnn_translit_2024012300"
       TRANSLATORSYSTEMCONFIG: "/usr/local/models/Config/a655bb54-2c86-4640-911c-296e50423096"
       # .Net Core settings
-      Mounts:Output: /logs
+      Mounts:Output: "/logs"
       # Other settings
       MODELS_UPDATED: "false"
     volumes:
