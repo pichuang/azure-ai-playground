@@ -23,7 +23,9 @@ services:
       Mounts:License: "/license"
       CATEGORIES: ""
       MODSENVIRONMENT: ""
+      # TODO: Need to change the value after download the models
       MODELS: "/usr/local/models/cht_chs_generalnn_2024040101,/usr/local/models/chs_cht_generalnn_2024040101,/usr/local/models/enu_chs_generalnn_2023110100,/usr/local/models/enu_chs_generalnn_contextual_translit_2024012300,/usr/local/models/chs_enu_generalnn_2023110100,/usr/local/models/enu_cht_generalnn_contextual_translit_2024012300,/usr/local/models/zh-hant_enu_generalnn_translit_2024012300,/usr/local/models/zh-hans_enu_generalnn_translit_2024012300"
+      # TODO: Need to change the value after download the models
       TRANSLATORSYSTEMCONFIG: "/usr/local/models/Config/a655bb54-2c86-4640-911c-296e50423096"
       # .Net Core settings
       Mounts:Output: "/logs"
