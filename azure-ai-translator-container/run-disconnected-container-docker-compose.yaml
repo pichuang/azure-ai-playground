@@ -15,7 +15,7 @@ services:
       EULA: "accept"
       # apikey: ${TRANSLATOR_KEY}
       # billing: ${TRANSLATOR_ENDPOINT_URI}
-      Languages: "zh-Hant,zh-Hans,en"
+      Languages: "zh-Hant,en"
       MODEL_PATH: "/usr/local/models"
       HOTFIXDATAFOLDER: "/hotfix"
       GENERATEHOTFIXTEMPLATE: "false"
