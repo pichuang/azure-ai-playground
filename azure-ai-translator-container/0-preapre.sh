@@ -3,6 +3,7 @@
 mkdir -p ./azure-ai-translator/models
 mkdir -p ./azure-ai-translator/logs
 mkdir -p ./azure-ai-translator/license
+mkdir -p ./azure-ai-translator/hotfix
 sudo chown -R 65532:65532 ./azure-ai-translator
 sudo chmod -R o+w ./azure-ai-translator
 
