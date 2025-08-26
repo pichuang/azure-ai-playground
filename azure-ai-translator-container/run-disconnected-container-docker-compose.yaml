@@ -17,7 +17,7 @@ services:
       # billing: ${TRANSLATOR_ENDPOINT_URI}
       Languages: "zh-Hant,zh-Hans,en"
       MODEL_PATH: "/usr/local/models"
-      HOTFIXDATAFOLDER: ""
+      HOTFIXDATAFOLDER: "/hotfix"
       GENERATEHOTFIXTEMPLATE: "false"
       DOWNLOADLICENSE: "false"
       Mounts:License: "/license"
@@ -31,11 +31,16 @@ services:
       Mounts:Output: "/logs"
       # Other settings
       MODELS_UPDATED: "false"
+      # Hotfix settings
+      HotfixDataFolder: "/hotfix"
+      HotfixReloadInterval: "1"
+      HotfixReloadEnabled: "true"
     volumes:
       - ./azure-ai-translator/models:/usr/local/models
       - ./azure-ai-translator/logs:/logs
       - ./azure-ai-translator/output:/output
       - ./azure-ai-translator/license:/license
+      - ./azure-ai-translator/hotfix:/hotfix
     expose:
       - "5000"
     ports:
