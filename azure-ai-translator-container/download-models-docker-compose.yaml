@@ -17,7 +17,6 @@ services:
       billing: ${TRANSLATOR_ENDPOINT_URI}
       Languages: zh-Hant,zh-Hans,en
       MODEL_PATH: /usr/local/models
-      HOTFIXDATAFOLDER: ""
       GENERATEHOTFIXTEMPLATE: "false"
       DOWNLOADLICENSE: "true"
       Mounts:License: "/license"
